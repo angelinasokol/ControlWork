@@ -35,7 +35,25 @@ fun PrintOrderScreen() {
     var discount by remember { mutableStateOf(10f) }
     var pricePerPage = 30
     val totalPrice = calculateTotalPrice(pageCount.toIntOrNull(), pricePerPage, discount)
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        content = { padding ->
+            Column(
+                modifier = Modifier
+                    .padding(padding)
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "Заказ на печать",
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+        }
 }
+
 
 fun calculateTotalPrice(pageCount: Int?, pricePerPage: Int, discount: Float) : Int {
     return if (pageCount != null && pageCount > 0) {
