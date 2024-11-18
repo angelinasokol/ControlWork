@@ -56,6 +56,16 @@ fun PrintOrderScreen() {
                     label = {Text("Количество страниц")},
                     modifier = Modifier.fillMaxWidth()
                 )
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text(text = "Скидка: ${discount.toInt()}%", fontSize = 16.sp)
+                    Slider(
+                        value = discount,
+                        onValueChange = {discount = it},
+                        valueRange = 0f..100f,
+                        steps = 9,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
             }
 
 
