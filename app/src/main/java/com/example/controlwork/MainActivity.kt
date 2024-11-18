@@ -50,9 +50,13 @@ fun PrintOrderScreen() {
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold
                 )
+                OutlinedTextField(
+                    value = pageCount,
+                    onValueChange = {pageCount = it.filter {char ->  char.isDigit()}},
+                    label = {Text("Количество страниц")},
+                    modifier = Modifier.fillMaxWidth()
+                )
             }
-        }
-}
 
 
 fun calculateTotalPrice(pageCount: Int?, pricePerPage: Int, discount: Float) : Int {
