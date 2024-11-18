@@ -27,7 +27,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             }
         }
-    }
 
 @Composable
 fun PrintOrderScreen() {
@@ -52,21 +51,30 @@ fun PrintOrderScreen() {
                 )
                 OutlinedTextField(
                     value = pageCount,
-                    onValueChange = {pageCount = it.filter {char ->  char.isDigit()}},
-                    label = {Text("Количество страниц")},
+                    onValueChange = { pageCount = it.filter { char -> char.isDigit() } },
+                    label = { Text("Количество страниц") },
                     modifier = Modifier.fillMaxWidth()
                 )
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(text = "Скидка: ${discount.toInt()}%", fontSize = 16.sp)
                     Slider(
                         value = discount,
-                        onValueChange = {discount = it},
+                        onValueChange = { discount = it },
                         valueRange = 0f..100f,
                         steps = 9,
                         modifier = Modifier.fillMaxWidth()
                     )
                 }
+                Text(
+                    text = "Итоговая стоимость: ${if (totalPrice >= 0) "$totalPrice руб." else "Введите данные"}",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Medium
+                )
             }
+        }
+    )
+}
+
 
 
 fun calculateTotalPrice(pageCount: Int?, pricePerPage: Int, discount: Float) : Int {
